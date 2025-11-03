@@ -101,30 +101,21 @@ nav a.active {
 
 /* Основной контент */
 main {
-  position: relative;
-  margin-top: 20px;
-  flex: none; /* не растягиваем main */
-  min-height: 100vh;  /* гарантируем, что main будет по высоте экрана */
-  flex-grow: 1;  /* позволяет растягивать main */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .page-content {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  transition: opacity 0.5s ease;
+  flex: 1 0 auto;
+  padding: 20px 0; /* можешь менять */
+  margin: 0;
 }
 
-.page-content.active {
-  opacity: 1;
-  visibility: visible;
-  position: relative;
-  margin-bottom: 0;
-  padding-bottom: 0; /* Убираем лишний отступ внизу */
+.page-content:not(.active) {
+  display: none;
 }
+
 
 h1 {
   font-size: 2em;
@@ -389,11 +380,108 @@ p {
   text-align: right;   /* сдвигаем вправо */
   font-style: italic;  /* делаем курсивом */
   color: #1a3d7e;      /* оставляем цвет как у заголовков */
-  font-size: 1.6em;    /* размер шрифта, можно изменить */
-  margin-bottom: 25px;
+  font-size: 0.5em;    /* размер шрифта, можно изменить */
+  margin-bottom: 10px;
 }
 
 .home-quote span {
   font-size: 0.9em;    /* размер для пояснения */
   color: #555;
+}
+/* Кнопка поддержки */
+.donate-block { text-align:center; margin-top:18px; }
+.donate-btn {
+  background:#4285f4;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:10px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(66,133,244,0.25);
+}
+.donate-btn:hover{ transform:translateY(-2px); }
+
+/* Модал */
+.modal {
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.45);
+  z-index:9999;
+}
+.modal[aria-hidden="false"]{ display:flex; }
+
+.modal-content {
+  background:#fff;
+  width:90%;
+  max-width:520px;
+  border-radius:12px;
+  padding:20px 20px 26px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  position:relative;
+  font-family:inherit;
+}
+
+.modal-close {
+  position:absolute;
+  right:12px;
+  top:10px;
+  background:transparent;
+  border:0;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.card-box {
+  background:#f7f9ff;
+  padding:12px;
+  border-radius:8px;
+  margin-top:10px;
+}
+.card-label { font-size:13px; color:#666; margin-bottom:6px; }
+.card-number {
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+.card-holder { font-size:14px; color:#444; margin-top:6px; }
+
+.card-actions { display:flex; gap:8px; }
+.small {
+  background:#1a73e8;
+  color:white;
+  border:0;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+.small:hover{ opacity:0.95; }
+
+.qr-section { text-align:center; margin-top:12px; }
+.qr-section img { width:180px; height:180px; border-radius:8px; background:#fff; padding:6px; box-shadow:0 6px 14px rgba(0,0,0,0.08); }
+
+.note { font-size:13px; color:#666; margin-top:10px; }
+
+.case-card {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.case-card h3 {
+  margin-top: 0;
+  color: #2a4d7a;
+}
+
+.case-card p {
+  margin-bottom: 10px;
+  line-height: 1.6;
 }
