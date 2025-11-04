@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /admin/
 Allow: /
-Sitemap: https://ДоброСовет/sitemap.xml
+Sitemap: https://dobrosovet.github.io/sitemap.xml
+
