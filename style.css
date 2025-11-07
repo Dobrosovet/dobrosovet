@@ -466,22 +466,73 @@ p {
 .qr-section img { width:180px; height:180px; border-radius:8px; background:#fff; padding:6px; box-shadow:0 6px 14px rgba(0,0,0,0.08); }
 
 .note { font-size:13px; color:#666; margin-top:10px; }
-
+/* === Карточка === */
 .case-card {
-  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  max-height: 180px; /* изначальная высота */
+  transition: max-height 0.4s ease;
+  background: #fff;
   border: 1px solid #dcdcdc;
   padding: 20px;
+  padding-bottom: 50px; /* место для кнопки */
   margin-bottom: 20px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.case-card h3 {
-  margin-top: 0;
-  color: #2a4d7a;
+/* === Развернутая карточка === */
+.case-card.expanded {
+  max-height: 1000px; /* достаточно для текста любой длины */
 }
 
-.case-card p {
-  margin-bottom: 10px;
-  line-height: 1.6;
+/* === Градиент снизу === */
+.case-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Привязываем к низу карточки */
+  left: 0;
+  right: 0;
+  height: 80px; /* Высота области, где будет градиент */
+  
+  /* Градиент: низ полностью белый (не видно текста),
+     затем плавно исчезает к прозрачному */
+  background: linear-gradient(to top, white 30%, transparent 100%);
+  
+  pointer-events: none; /* Чтобы градиент не мешал нажимать кнопки */
+  transition: opacity 0.3s ease; /* Плавное исчезновение при развороте */
+  z-index: 1; /* Поверх текста */
+}
+
+
+.case-card.expanded::after {
+  opacity: 0; /* убираем градиент при разворачивании */
+}
+
+/* === Текст ситуации === */
+.situation-text {
+  max-height: 120px; /* видимая часть текста */
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+/* === Развернутый текст === */
+.situation-text.expanded {
+  max-height: 1000px; /* достаточно для полного текста */
+}
+
+/* === Кнопка === */
+.toggle-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2;
+  color: gray;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-btn:hover {
+  color: #444;
 }
