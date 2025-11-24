@@ -475,7 +475,6 @@ p {
   margin-top: 20px;
 }
 
-
 /* === Карточка === */
 .case-card {
   position: relative;
@@ -500,6 +499,7 @@ p {
   overflow: hidden;
   transition: max-height 0.4s ease;
   max-height: 120px; /* Ограничение высоты текста */
+  padding-bottom: 30px; /* Добавляем отступ снизу, чтобы текст не перекрывал кнопку */
 }
 
 .situation-text.expanded {
@@ -537,4 +537,28 @@ p {
 
 .toggle-btn:hover {
   color: #444;
+}
+
+/* === Кнопка "Подробнее" слева === */
+.case-card .btn {
+  position: absolute;
+  left: 20px; /* Располагаем кнопку слева */
+  bottom: 10px;
+  z-index: 2; /* Обеспечиваем, чтобы кнопка была поверх текста */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #444;
+}
+
+.case-card .btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* === Убираем наложение текста на кнопку === */
+.case-card .situation-text {
+  padding-bottom: 30px; /* Добавляем отступ снизу */
 }
