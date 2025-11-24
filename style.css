@@ -480,23 +480,33 @@ p {
 .case-card {
   position: relative;
   overflow: hidden;
-  max-height: 180px;
-  transition: max-height 0.4s ease;
   background: #fff;
   border: 1px solid #dcdcdc;
   padding: 20px;
-  padding-bottom: 50px;
   margin-bottom: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s ease;
 }
 
-/* === Развернутая карточка === */
+/* Когда карточка раскрыта */
 .case-card.expanded {
-  max-height: none;
+  max-height: none; /* Убираем максимальную высоту */
+  height: auto; /* Автоматическая высота в зависимости от содержимого */
 }
 
-/* === Градиент === */
+/* Текст */
+.situation-text {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  max-height: 120px; /* Ограничение высоты текста */
+}
+
+.situation-text.expanded {
+  max-height: none; /* Без ограничений */
+}
+
+/* Градиент */
 .case-card::after {
   content: "";
   position: absolute;
@@ -507,25 +517,13 @@ p {
   background: linear-gradient(to top, white 30%, transparent 100%);
   pointer-events: none;
   transition: opacity 0.3s ease;
-  z-index: 1;
 }
 
 .case-card.expanded::after {
   opacity: 0;
 }
 
-/* === Текст ситуации === */
-.situation-text {
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  max-height: 120px;
-}
-
-.situation-text.expanded {
-  max-height: none;
-}
-
-/* === Кнопка === */
+/* Кнопка развертывания */
 .toggle-btn {
   position: absolute;
   bottom: 10px;
@@ -539,11 +537,4 @@ p {
 
 .toggle-btn:hover {
   color: #444;
-}
-
-/* === Мобильная адаптивность === */
-@media (max-width: 768px) {
-  .case-cards-container {
-    grid-template-columns: 1fr; /* Одна колонка для мобильных */
-  }
 }

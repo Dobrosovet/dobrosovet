@@ -72,8 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- 
-   // --- 📖 ФУНКЦИЯ РАЗВОРАЧИВАНИЯ ТЕКСТА ---
   // --- 📖 ФУНКЦИЯ РАЗВОРАЧИВАНИЯ ТЕКСТА ---
   const cards = document.querySelectorAll('.case-card');
 
@@ -108,9 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleBtn.innerHTML = '▼ Развернуть';
       }
     });
+  });
 
-    // Адаптация при изменении размера окна
-    window.addEventListener('resize', () => {
+  // Адаптация при изменении размера окна
+  window.addEventListener('resize', () => {
+    cards.forEach(card => {
+      const situationText = card.querySelector('.situation-text');
       if (situationText.classList.contains('expanded')) {
         // Пересчитываем полную высоту при изменении окна
         const fullHeight = situationText.scrollHeight + 80; // Увеличиваем запас для адаптивности
