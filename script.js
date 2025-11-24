@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
  
+   // --- 📖 ФУНКЦИЯ РАЗВОРАЧИВАНИЯ ТЕКСТА ---
   // --- 📖 ФУНКЦИЯ РАЗВОРАЧИВАНИЯ ТЕКСТА ---
   const cards = document.querySelectorAll('.case-card');
 

@@ -466,24 +466,33 @@ p {
 .qr-section img { width:180px; height:180px; border-radius:8px; background:#fff; padding:6px; box-shadow:0 6px 14px rgba(0,0,0,0.08); }
 
 .note { font-size:13px; color:#666; margin-top:10px; }
+/* === Контейнер карточек === */
+.case-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Колонки в зависимости от ширины */
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
 /* === Карточка === */
 .case-card {
   position: relative;
   overflow: hidden;
-  max-height: 180px; /* Изначальная максимальная высота */
+  max-height: 180px;
   transition: max-height 0.4s ease;
   background: #fff;
   border: 1px solid #dcdcdc;
   padding: 20px;
-  padding-bottom: 50px; /* Одинаковый отступ снизу для всех карточек */
-  margin-bottom: 20px; /* Отступ между карточками */
+  padding-bottom: 50px;
+  margin-bottom: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* === Развернутая карточка === */
 .case-card.expanded {
-  max-height: none; /* Убираем фиксированное ограничение на высоту */
+  max-height: none;
 }
 
 /* === Градиент === */
@@ -501,18 +510,18 @@ p {
 }
 
 .case-card.expanded::after {
-  opacity: 0; /* Отключаем градиент, когда карточка развернута */
+  opacity: 0;
 }
 
 /* === Текст ситуации === */
 .situation-text {
   overflow: hidden;
   transition: max-height 0.4s ease;
-  max-height: 120px; /* Ограничение по высоте */
+  max-height: 120px;
 }
 
 .situation-text.expanded {
-  max-height: none; /* Без ограничений при развертывании */
+  max-height: none;
 }
 
 /* === Кнопка === */
@@ -531,3 +540,9 @@ p {
   color: #444;
 }
 
+/* === Мобильная адаптивность === */
+@media (max-width: 768px) {
+  .case-cards-container {
+    grid-template-columns: 1fr; /* Одна колонка для мобильных */
+  }
+}
