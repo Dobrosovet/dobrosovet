@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+ 
   // --- 📖 ФУНКЦИЯ РАЗВОРАЧИВАНИЯ ТЕКСТА ---
   const cards = document.querySelectorAll('.case-card');
 
@@ -80,23 +81,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const situationText = card.querySelector('.situation-text');
     if (!toggleBtn || !situationText) return;
 
-    // исходное состояние
+    // Исходное состояние
     situationText.style.maxHeight = '120px';
-    card.style.maxHeight = '180px'; // ограничение карточки до нажатия
+    card.style.maxHeight = '180px'; // Ограничение карточки до нажатия
 
     toggleBtn.addEventListener('click', () => {
       const isExpanded = situationText.classList.toggle('expanded');
+      card.classList.toggle('expanded', isExpanded); // Добавляем/удаляем класс для карточки
 
       if (isExpanded) {
-        const fullHeight = situationText.scrollHeight + 100; // запас для кнопки
-        situationText.style.maxHeight = situationText.scrollHeight + 'px';
-        card.style.maxHeight = fullHeight + 'px';
-        card.classList.add('expanded'); // скрывает градиент
+        // Получаем полную высоту блока текста
+        const fullHeight = situationText.scrollHeight + 80; // Увеличиваем запас, чтобы текст полностью разворачивался
+
+        situationText.style.transition = 'max-height 0.4s ease'; // Плавный переход
+        situationText.style.maxHeight = fullHeight + 'px'; // Делаем высоту динамичной
+        card.style.maxHeight = fullHeight + 40 + 'px'; // Добавляем немного для кнопки и отступов
+
         toggleBtn.innerHTML = '▲ Свернуть';
       } else {
+        // Сворачиваем обратно
+        situationText.style.transition = 'max-height 0.4s ease';
         situationText.style.maxHeight = '120px';
         card.style.maxHeight = '180px';
-        card.classList.remove('expanded'); // возвращает градиент
+
         toggleBtn.innerHTML = '▼ Развернуть';
       }
     });
@@ -104,8 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Адаптация при изменении размера окна
     window.addEventListener('resize', () => {
       if (situationText.classList.contains('expanded')) {
-        situationText.style.maxHeight = situationText.scrollHeight + 'px';
-        card.style.maxHeight = situationText.scrollHeight + 40 + 'px';
+        // Пересчитываем полную высоту при изменении окна
+        const fullHeight = situationText.scrollHeight + 80; // Увеличиваем запас для адаптивности
+        situationText.style.maxHeight = fullHeight + 'px';
+        card.style.maxHeight = fullHeight + 40 + 'px';
       }
     });
   });
