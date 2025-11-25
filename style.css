@@ -468,9 +468,9 @@ p {
 .note { font-size:13px; color:#666; margin-top:10px; }
 /* === Контейнер карточек === */
 .case-cards-container {
-  display: flex; 
-  flex-direction: column; 
-  gap: 20px;
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение карточек */
+  gap: 20px; /* Отступы между карточками */
   padding: 20px;
   margin-top: 20px;
 }
@@ -487,31 +487,32 @@ p {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.4s ease;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: auto; /* Убираем фиксированную высоту, карточка будет расти по мере добавления контента */
+  flex-direction: column; /* Все элементы внутри карточки идут по вертикали */
+  justify-content: flex-start; /* Элементы будут располагаться сверху */
+  height: auto; /* Убираем фиксированную высоту */
 }
 
 /* Когда карточка раскрыта */
 .case-card.expanded {
-  max-height: none; 
-  height: auto;
+  max-height: none; /* Убираем ограничения по высоте */
 }
 
-/* Текст */
+/* === Текст === */
 .situation-text {
   overflow: hidden;
   transition: max-height 0.4s ease;
-  max-height: 200px; /* Увеличиваем максимальную высоту для большего текста */
+  max-height: 200px; /* Пример ограничения высоты текста */
   padding-bottom: 10px;
-  margin-bottom: 20px; /* Чтобы текст не перекрывал кнопку */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
 }
 
+/* Состояние при раскрытии текста */
 .situation-text.expanded {
-  max-height: none; 
+  max-height: none; /* Без ограничений на высоту */
+  overflow: auto; /* Добавляем прокрутку, если текст слишком длинный */
 }
 
-/* Градиент */
+/* === Градиент === */
 .case-card::after {
   content: "";
   position: absolute;
@@ -528,7 +529,7 @@ p {
   opacity: 0;
 }
 
-/* Кнопка развертывания */
+/* === Кнопка развертывания === */
 .toggle-btn {
   position: absolute;
   bottom: 10px;
@@ -544,7 +545,7 @@ p {
   color: #444;
 }
 
-/* === Кнопка "Подробнее" справа === */
+/* === Кнопка "Подробнее" === */
 .case-card .btn {
   position: relative;
   z-index: 2;
@@ -555,11 +556,21 @@ p {
   font-size: 14px;
   text-decoration: none;
   color: #444;
-  align-self: flex-end; /* Кнопка будет выровнена по правому краю */
+  align-self: flex-end; /* Выравнивание по правому краю */
   margin-top: 10px;
-  margin-bottom: 20px; /* Отступ снизу, чтобы всё было симметрично */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
 }
 
 .case-card .btn:hover {
   background-color: #e0e0e0;
+}
+/* Для текста с прокруткой */
+.situation-text.expanded {
+  max-height: none;
+  overflow: auto; /* Прокрутка, если текст слишком длинный */
+  scrollbar-width: none; /* Для Firefox скрывает прокрутку */
+}
+
+.situation-text.expanded::-webkit-scrollbar {
+  display: none; /* Для Chrome, Safari, Edge скрывает прокрутку */
 }
