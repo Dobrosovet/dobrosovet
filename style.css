@@ -486,6 +486,9 @@ p {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Это поможет правильно распределить элементы */
 }
 
 /* Когда карточка раскрыта */
@@ -499,7 +502,7 @@ p {
   overflow: hidden;
   transition: max-height 0.4s ease;
   max-height: 120px; /* Ограничение высоты текста */
-  padding-bottom: 30px; /* Добавляем отступ снизу, чтобы текст не перекрывал кнопку */
+  padding-bottom: 10px; /* Уменьшаем отступ снизу, чтобы кнопка не перекрывалась */
 }
 
 .situation-text.expanded {
@@ -539,11 +542,9 @@ p {
   color: #444;
 }
 
-/* === Кнопка "Подробнее" слева === */
+/* === Кнопка "Подробнее" справа === */
 .case-card .btn {
-  position: absolute;
-  left: 20px; /* Располагаем кнопку слева */
-  bottom: 10px;
+  position: relative;
   z-index: 2; /* Обеспечиваем, чтобы кнопка была поверх текста */
   background-color: #f0f0f0;
   border: 1px solid #ccc;
@@ -552,13 +553,10 @@ p {
   font-size: 14px;
   text-decoration: none;
   color: #444;
+  align-self: flex-end; /* Выравниваем кнопку по правому краю */
+  margin-top: 10px; /* Добавляем отступ сверху, чтобы кнопка не была слишком близко к тексту */
 }
 
 .case-card .btn:hover {
   background-color: #e0e0e0;
-}
-
-/* === Убираем наложение текста на кнопку === */
-.case-card .situation-text {
-  padding-bottom: 30px; /* Добавляем отступ снизу */
 }
